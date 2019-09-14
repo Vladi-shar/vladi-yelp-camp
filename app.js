@@ -15,7 +15,7 @@ const commentRoutes 	= require('./routes/comments'),
 	campgroundRoutes	= require('./routes/campgrounds'),
 	indexRoutes 		= require('./routes/index');
 
-const connectionString = proccess.env.DATABASEURL;
+const connectionString = process.env.DATABASEURL;
 
 mongoose.connect(connectionString, {
 	useNewUrlParser: true,
@@ -60,6 +60,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.listen(proccess.env.PORT ,() => {
+app.listen(process.env.PORT ,() => {
 	console.log("Server started on 3000");
 });
