@@ -6,7 +6,7 @@ const express   = require('express'),
 
 // root route
 router.get('/', (req, res) => {
-    res.render("landing");
+    res.redirect("/campgrounds");
 });
 
 // register form route
