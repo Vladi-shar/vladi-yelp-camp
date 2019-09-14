@@ -15,9 +15,18 @@ const commentRoutes 	= require('./routes/comments'),
 	campgroundRoutes	= require('./routes/campgrounds'),
 	indexRoutes 		= require('./routes/index');
 
-const connectionString = 'mongodb+srv://HerokuUser:kVcujUhkna3nfvbn@vladisharcluster-eit8n.mongodb.net/YelpCamp?retryWrites=true&w=majority';
+const connectionString = proccess.env.DATABASEURL;
 
-mongoose.connect(connectionString, {useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true}).catch((err) => {console.log(err)});
+mongoose.connect(connectionString, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
+}).then(() => {
+	console.log("connected to DB");
+}).catch(err =>
+	{console.log('Error:', err.message);
+});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
@@ -51,6 +60,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.listen(3000, () => {
+app.listen(proccess.env.PORT ,() => {
 	console.log("Server started on 3000");
 });
