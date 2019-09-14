@@ -15,7 +15,7 @@ const commentRoutes 	= require('./routes/comments'),
 	campgroundRoutes	= require('./routes/campgrounds'),
 	indexRoutes 		= require('./routes/index');
 
-const connectionString = 'mongodb+srv://VladiPc:Al0nga55fuck1ngt1m3ag0@vladisharcluster-eit8n.mongodb.net/YelpCamp?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://HerokuUser:kVcujUhkna3nfvbn@vladisharcluster-eit8n.mongodb.net/YelpCamp?retryWrites=true&w=majority';
 
 mongoose.connect(connectionString, {useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true}).catch((err) => {console.log(err)});
 app.use(bodyParser.urlencoded({extended: true}));
