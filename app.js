@@ -5,9 +5,6 @@ const express	 		= require('express'),
 	passport			= require('passport'),
 	LocalStrategy		= require('passport-local'),
 	methodOverride		= require('method-override'),
-	Campground		 	= require('./models/campground'),
-	seedDB				= require('./seeds'),
-	Comment				= require('./models/comment'),
 	User				= require('./models/user'),
 	app					= express();
 
@@ -32,8 +29,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.use(flash());
 app.set("view engine", "ejs");
-// seed the database
-// seedDB();
 
 
 // PASSPORT CONFIG
@@ -63,3 +58,7 @@ passport.deserializeUser(User.deserializeUser());
 app.listen(process.env.PORT ,() => {
 	console.log("Server started on PORT=" + process.env.PORT);
 });
+
+// app.listen(3000 ,() => {
+// 	console.log("Server started on PORT=" + 3000);
+// });
