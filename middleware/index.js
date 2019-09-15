@@ -1,6 +1,7 @@
 const express   = require('express'),
     Campground  = require('../models/campground'),
-    Comment     = require('../models/comment');
+    Comment     = require('../models/comment'),
+    User        = require('../models/user');
 
 let middlewareObj = {};
 
@@ -12,7 +13,7 @@ middlewareObj.checkCampgroundOwnership = function (req, res, next) {
                 req.flash('error', "Campground doesn't exist");
                 res.redirect('back');
             } else {
-                if (campground.author.id.equals(req.user._id)){
+                if (campground.author.id.equals(req.user._id) || req.user.username === 'Admin'){
                     next();
                 } else {
                     req.flash('error', "That Campground does not belong to you!");
@@ -34,7 +35,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
                 req.flash('error', "Comment doesn't exist");
                 res.redirect('back');
             } else {
-                if (comment.author.id.equals(req.user._id)){
+                if (comment.author.id.equals(req.user._id)  || req.user.username === 'Admin'){
                     next();
                 } else {
                     // user doesnt own comment
@@ -58,6 +59,7 @@ middlewareObj.isLoggedIn = function (req, res, next) {
         res.redirect('/login');
     }
 };
+
 
 
 module.exports = middlewareObj;

@@ -61,5 +61,5 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.listen(process.env.PORT ,() => {
-	console.log("Server started on 3000");
+	console.log("Server started on PORT=" + process.env.PORT);
 });
